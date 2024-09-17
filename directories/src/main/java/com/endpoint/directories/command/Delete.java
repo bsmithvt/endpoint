@@ -11,6 +11,6 @@ class Delete implements Command {
             throw new InvalidCommandException(String.format("DELETE command requires %d argument.", ARG_LENGTH));
         }
 
-        root.delete(commandArgs[0]);
+        root.delete(commandArgs[0].trim());
     }
 }

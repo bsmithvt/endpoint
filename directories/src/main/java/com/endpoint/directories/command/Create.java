@@ -10,6 +10,6 @@ class Create implements Command {
         if (commandArgs == null || commandArgs.length != ARG_LENGTH) {
             throw new InvalidCommandException(String.format("CREATE command requires %d argument.", ARG_LENGTH));
         }
-        root.create(commandArgs[0]);
+        root.create(commandArgs[0].trim());
     }
 }

@@ -13,7 +13,7 @@ public class CommandProcessor {
         String[] commandParts = commandText.split(CMD_DELIMITER);
         // CREATE | MOVE | DELETE | LIST
         String action = commandParts[0];
-        Command command = CommandFactory.createCommand(action);
+        Command command = CommandFactory.createCommand(action.trim());
         command.process(root, Arrays.copyOfRange(commandParts, 1, commandParts.length));
     }
 }
