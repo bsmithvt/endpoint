@@ -6,7 +6,7 @@ This application is written using Java 21 and Maven. To run the executable, you 
 # Building the Application
 Run the following from `<REPO_ROOT>/directories`:
 
-`mvn clean install`
+`mvn clean install` (NOTE: this also executes the tests)
 
 # Executing the Application
 There are two options for running the executable:
