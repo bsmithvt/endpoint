@@ -12,6 +12,8 @@ public class Directory {
     private Node root = new Node("ROOT_" + UUID.randomUUID(), null);
 
     public void create(String path) {
+        if (path == null || path.isBlank()) throw new IllegalArgumentException("path must have a valid value.");
+
         String[] pathParts = path.split(PATH_DELIMITER);
         Node node = root;
         for (String part : pathParts) {
@@ -27,11 +29,14 @@ public class Directory {
     }
 
     public void move(String sourcePath, String targetPath) throws InvalidCommandException {
+        if (sourcePath == null || sourcePath.isBlank()) throw new IllegalArgumentException("sourcePath must have a valid value.");
+        if (targetPath == null || targetPath.isBlank()) throw new IllegalArgumentException("targetPath must have a valid value.");
+
         // navigate to source node
         Node sourceNode = root;
         String[] sourcePathParts = sourcePath.split(PATH_DELIMITER);
         for (var i=0; i < sourcePathParts.length; i++) {
-            String sourcePathPart = sourcePathParts[i];
+            String sourcePathPart = sourcePathParts[i].trim();
             sourceNode = sourceNode.children.get(sourcePathPart);
             if (i == sourcePathParts.length-1) {
                 break;
@@ -49,7 +54,7 @@ public class Directory {
         Node targetNode = root;
         String[] targetPathParts = targetPath.split(PATH_DELIMITER);
         for (var i=0; i < targetPathParts.length; i++) {
-            String targetPathPart = targetPathParts[i];
+            String targetPathPart = targetPathParts[i].trim();
             targetNode = targetNode.children.get(targetPathPart);
             if (i == targetPathParts.length - 1) {
                 break;
@@ -70,10 +75,12 @@ public class Directory {
     }
 
     public void delete(String path) throws InvalidCommandException {
+        if (path == null || path.isBlank()) throw new IllegalArgumentException("path must have a valid value.");
+
         String[] pathParts = path.split(PATH_DELIMITER);
         Node node = root;
         for (var i=0; i < pathParts.length; i++) {
-            String part = pathParts[i];
+            String part = pathParts[i].trim();
             Node child = node.children.get(part);
             if (child == null) {
                 throw new InvalidCommandException(String.format("Cannot delete %s - %s does not exist", path, part));

@@ -11,6 +11,6 @@ class Move implements Command {
             throw new InvalidCommandException(String.format("MOVE command requires %d arguments.", ARG_LENGTH));
         }
 
-        root.move(commandArgs[0], commandArgs[1]);
+        root.move(commandArgs[0].trim(), commandArgs[1].trim());
     }
 }

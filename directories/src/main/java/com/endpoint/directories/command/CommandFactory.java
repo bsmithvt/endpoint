@@ -8,7 +8,7 @@ public class CommandFactory {
 
     public static Command createCommand(String command) {
         if (command == null) throw new NullPointerException("command cannot be null.");
-        return switch (command.toLowerCase()) {
+        return switch (command.toLowerCase().trim()) {
             case CREATE -> new Create();
             case MOVE -> new Move();
             case DELETE -> new Delete();
