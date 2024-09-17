@@ -80,6 +80,18 @@ public class DirectoryTest {
         assertEquals(0, fruitsNode.children.size());
         assertEquals("fruits", fruitsNode.name);
         assertEquals("food", fruitsNode.parent.name);
+
+        // invalid delete
+        assertThrows(InvalidCommandException.class,
+                () -> directory.delete("invalid/path"));
+
+        // invalid move (sourcePath)
+        assertThrows(InvalidCommandException.class,
+                () -> directory.move("invalid/path", "food"));
+
+        // invalid move (targetPath)
+        assertThrows(InvalidCommandException.class,
+                () -> directory.move("food/fruits", "invalid/path"));
     }
 
     @Test
