@@ -8,7 +8,7 @@ public class CommandProcessor {
     private static final String CMD_DELIMITER = " ";
 
     public void process(Directory root, String commandText) throws InvalidCommandException {
-        if (commandText == null || commandText.length() == 0) return;
+        if (commandText == null || commandText.isBlank()) return;
 
         String[] commandParts = commandText.split(CMD_DELIMITER);
         // CREATE | MOVE | DELETE | LIST
