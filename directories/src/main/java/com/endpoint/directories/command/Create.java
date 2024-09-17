@@ -7,6 +7,7 @@ class Create implements Command {
 
     @Override
     public void process(Directory root, String... commandArgs) throws InvalidCommandException {
+        if (root == null) throw new InvalidCommandException("root must be non-null.");
         if (commandArgs == null || commandArgs.length != ARG_LENGTH) {
             throw new InvalidCommandException(String.format("CREATE command requires %d argument.", ARG_LENGTH));
         }

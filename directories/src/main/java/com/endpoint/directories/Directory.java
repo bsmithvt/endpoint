@@ -11,6 +11,10 @@ public class Directory {
 
     private Node root = new Node("ROOT_" + UUID.randomUUID(), null);
 
+    Node root() {
+        return root;
+    }
+
     public void create(String path) {
         if (path == null || path.isBlank()) throw new IllegalArgumentException("path must have a valid value.");
 
@@ -21,7 +25,6 @@ public class Directory {
              if (child == null) {
                  child = new Node(part, node);
                  node.children.put(part, child);
-                 break;
              }
 
              node = child;
@@ -112,10 +115,10 @@ public class Directory {
         }
     }
 
-    private static class Node {
-        private String name;
-        private Node parent;
-        private TreeMap<String, Node> children = new TreeMap<>();
+    static class Node {
+        String name;
+        Node parent;
+        TreeMap<String, Node> children = new TreeMap<>();
 
         Node(String name, Node parent) {
             this.name = name;
